@@ -1,5 +1,7 @@
 "use strict"
 
+hud = new GAME.HUDMenu()
+
 screenElement = document.getElementById("screen")
 game = new GAME.Game(screenElement)
 game.run()
@@ -13,6 +15,6 @@ assetManager.onload = (loaded, all) ->
     game.input.addHandler(new EXAMPLE.ExampleInputHandler())
     console.log("input handler initialized")
 
-    
 
-assetManager.load()
+
+#assetManager.load()

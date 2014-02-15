@@ -24,12 +24,17 @@
 
 
         <div id="screen"></div>
+        <div ng-app="HUDApp" class="hud">
+            <div ng-view=""></div>
+        </div>
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/pixi/bin/pixi.js"></script>
         <script src="bower_components/tweenlite/TweenLite.min.js"></script>
         <script src="bower_components/howler/howler.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -46,6 +51,7 @@
         <!-- build:js scripts/main.js -->
         <script src="scripts/vendor/gamekeyboard.min.js"></script>
         <script src="scripts/vendor/uam.min.js"></script>
+        <script src="scripts/vendor/hud.min.js"></script>
         <!-- endbuild -->
 
         <!-- build:js(.tmp) scripts/coffee.js -->
@@ -53,6 +59,8 @@
         <script src="scripts/assets.js"></script>
         <script src="scripts/renderer.js"></script>
         <script src="scripts/input.js"></script>
+        <script src="scripts/hud/main.js"></script>
+        <script src="scripts/hud.js"></script>
         <script src="scripts/assetManager.js"></script>
         <script src="scripts/inputHandler.js"></script>
         <script src="scripts/game.js"></script>

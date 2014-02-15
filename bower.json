@@ -4,7 +4,10 @@
   "dependencies": {
     "sass-bootstrap": "~3.0.0",
     "modernizr": "~2.6.2",
-    "jquery": "~1.10.2"
+    "jquery": "~1.10.2",
+    "pixi": "~1.5.1",
+    "tweenlite": "~1.11.5",
+    "howler": "~1.1.17"
   },
   "devDependencies": {}
 }

@@ -18,8 +18,9 @@ class GAME.Renderer
     this.screen.appendChild(this.renderer.view)
 
   _onResize: () ->
-    window.onresize = () =>
+    window.addEventListener("resize", () =>
       this.renderer.resize(window.innerWidth, window.innerHeight)
+    )
 
   render: () ->
     this.renderer.render(this.stage)

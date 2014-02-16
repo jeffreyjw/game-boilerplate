@@ -9,7 +9,8 @@
     "tweenlite": "~1.11.5",
     "howler": "~1.1.17",
     "angular": "~1.2.13",
-    "angular-route": "~1.2.13"
+    "angular-route": "~1.2.13",
+    "bowser": "~0.3.7"
   },
   "devDependencies": {}
 }

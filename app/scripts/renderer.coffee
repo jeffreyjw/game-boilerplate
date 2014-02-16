@@ -15,7 +15,11 @@ class GAME.Renderer
 
 
   _create: () ->
-    this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight)
+    if bowser.msie && bowser.version == "11.0"
+      this.renderer = new PIXI.CanvasRenderer(window.innerWidth, window.innerHeight)
+    else
+      this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight)
+
     this.screen.appendChild(this.renderer.view)
 
 

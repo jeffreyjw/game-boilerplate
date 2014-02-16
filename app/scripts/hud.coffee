@@ -18,6 +18,8 @@ class GAME.HUDMenu
     new GAME.StopEventPropagation(this.app())
     new GAME.HUDMainCtrl(this.app())
 
+    angular.bootstrap(this.hudElement, ["HUDApp"])
+
 
   _createConfig: () ->
     config = {
@@ -50,16 +52,8 @@ class GAME.HUDMenu
       this.hudElement.style.height = window.innerHeight+'px'
     )
 
-    # experimental, not working properly
-    this.game.screen.addEventListener('DOMAttrModified', () =>
-      ###console.log(this.hudElement.style.cursor)
-      console.log(this.game.screen.style.cursor)
-
-      if this.game.screen.style.cursor == ""
-        this.hudElement.style.cursor = "inherit"
-      else
-        this.hudElement.style.cursor = this.game.screen.style.cursor###
-    )
+    # DOMAttrModified not working properly
+    # TODO: use MutationObserver instead
 
 
   _createView: () ->

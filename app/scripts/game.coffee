@@ -13,7 +13,7 @@ class GAME.Game
 
   setScene: (scene) ->
     this.scene = scene
-    this.renderer.stage = this.scene.stage
+    this.renderer.stage = scene.stage
 
   getScene: () ->
     return this.scene.stage

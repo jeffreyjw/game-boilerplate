@@ -4,17 +4,4 @@ screenElement = document.getElementById("screen")
 game = new GAME.Game(screenElement)
 game.run()
 
-assetManager = new GAME.AssetManager(GAME.Assets)
-
-assetManager.onload = (loaded, all) ->
-  console.log("loaded " + loaded + " of " + all)
-
-  if loaded == all
-    game.input.addHandler(new EXAMPLE.ExampleInputHandler())
-    game.setScene(new EXAMPLE.ExampleScene())
-    console.log("input handler initialized")
-    hud = new GAME.HUDMenu(game, document.getElementsByClassName('hud')[0])
-
-
-
-assetManager.load()
+game.setScene(new GAME.Loader(game))

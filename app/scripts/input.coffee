@@ -20,6 +20,14 @@ class GAME.Input
   addHandler: (handler) ->
     this.handlers.push(handler)
 
+  removeHandler: (handler) ->
+    index = this.handlers.indexOf(handler)
+    if index >= 0
+      this.handlers.splice(index, 1)
+
+  clearHandlers: () ->
+    this.handlers = []
+
   _runHandlers: () ->
     for handler in this.handlers
       handler.run(this.game, this.keyboard)

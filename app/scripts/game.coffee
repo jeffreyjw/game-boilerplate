@@ -5,10 +5,18 @@ class GAME.Game
   renderer: null
   screen: null
   input: null
+  scene: null
 
   constructor: (screen) ->
     this.screen = screen
     this._prepare()
+
+  setScene: (scene) ->
+    this.scene = scene
+    this.renderer.stage = this.scene.stage
+
+  getScene: () ->
+    return this.scene.stage
 
   _prepare: () ->
     this.renderer = new GAME.Renderer(this.screen)

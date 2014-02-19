@@ -54,6 +54,27 @@ class GAME.HUDMenu
 
     # DOMAttrModified not working properly
     # TODO: use MutationObserver instead
+    this._observeAttributeChange()
+
+
+  _observeAttributeChange: () ->
+    observer = new MutationObserver(
+      (mutations) =>
+        mutations.forEach(
+          (mutation) =>
+            this.hudElement.style.cursor =
+              this.game.getScreenElement().style.cursor
+        )
+    )
+
+    observer.observe(
+      this.game.getScreenElement(),
+      {
+        attributes: true,
+        childList: true,
+        characterData: true
+      }
+    )
 
 
   _createView: () ->

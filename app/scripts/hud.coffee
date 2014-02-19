@@ -13,12 +13,12 @@ class GAME.HUDMenu
     this._createHudElement()
 
     config = this._createConfig()
-    this.hud = new HUD.Menu(config)
+    this.hud = new HUD.Menu(this.hudElement, config)
 
     new GAME.StopEventPropagation(this.app())
     new GAME.HUDMainCtrl(this.app())
 
-    angular.bootstrap(this.hudElement, ["HUDApp"])
+    this._run()
 
 
   _createConfig: () ->
@@ -67,7 +67,6 @@ class GAME.HUDMenu
 
   _createHudElement: () ->
 
-    this.hudElement.setAttribute("ng-app", "HUDApp")
     this.hudElement.style.width = window.innerWidth+'px'
     this.hudElement.style.height = window.innerHeight+'px'
 
@@ -76,3 +75,6 @@ class GAME.HUDMenu
 
     this._createEvents()
 
+
+  _run: () ->
+    this.hud.run()

@@ -12,6 +12,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-zip');
 
     grunt.initConfig({
         // configurable paths
@@ -46,6 +47,25 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
                 ]
+            }
+        },
+        zip: {
+
+            widgets: {
+                src: [
+                    "*",
+                    "!node_modules",
+                    "app/**",
+                    "test/**",
+                    "!app/bower_components/**",
+                    ".*",
+                    "!{.git,.idea,.sass-cache,.tmp}",
+                    "app/**/.*",
+                    "!app/bower_components/**/.*",
+                    "test/**/.*",
+                    "!test/bower_components/**/.*"
+                ],
+                dest: "compressed/app.zip"
             }
         },
         connect: {

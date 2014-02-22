@@ -51,14 +51,15 @@ class EXAMPLE.ExampleScene extends GAME.Scene
 
 
   _createEarth: (parent) ->
-    return this._createStellarBody("images/earth.png", [600, 100, -2], 0.5, parent)
+    return this._createStellarBody("images/earth.png", [200, 0, 0], 0.5, parent)
 
 
   _createMoon: (parent) ->
-    return this._createStellarBody("images/moon.png", [700, 100, -2], 0.2, parent)
+    return this._createStellarBody("images/moon.png", [100, 0, 0], 0.2, parent)
 
 
   update: () ->
     for o in this.objects
       o.update(this.camera)
+
 

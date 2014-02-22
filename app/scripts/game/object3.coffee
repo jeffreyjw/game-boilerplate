@@ -5,10 +5,12 @@ class GAME.Object3
 
   sprite: null
   node: null
+  _scale: null
 
   constructor: (obj) ->
     this.sprite = this._createSprite(obj)
     this.node = this._createNode()
+    this._scale = 1
 
 
   _createSprite: (obj) ->
@@ -43,9 +45,13 @@ class GAME.Object3
     this.node.position = position
 
 
+  setScale: (scale) ->
+    this._scale = scale
+
+
   update: (camera) ->
     data = this.node.getData2d(camera)
-    this.sprite.scale.x = data.scale
-    this.sprite.scale.y = data.scale
+    this.sprite.scale.x = this._scale*data.scale
+    this.sprite.scale.y = this._scale*data.scale
     this.sprite.position.x = data.position[0]
     this.sprite.position.y = data.position[1]

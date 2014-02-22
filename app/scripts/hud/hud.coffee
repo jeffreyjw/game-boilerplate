@@ -6,19 +6,21 @@ class GAME.HUDMenu
   hud: null
   hudElement: null
   game: null
+  components: null
 
   constructor: (game, hudElement) ->
     this.game = game
     this.hudElement = hudElement
+    this.components = [
+      GAME.HUDMainCtrl
+      GAME.StopEventPropagation
+    ]
+
     this._createHudElement()
 
     config = this._createConfig()
     this.hud = new HUD.Menu(this.hudElement, config)
 
-    new GAME.StopEventPropagation(this.app())
-    new GAME.HUDMainCtrl(this.app())
-
-    this._run()
 
 
   _createConfig: () ->
@@ -39,7 +41,7 @@ class GAME.HUDMenu
       e.screenX, e.screenY, e.clientX, e.clientY, e.ctrlKey, e.altKey, e.shiftKey,
       e.metaKey, e.button, e.relatedTarget)
 
-    this.game.renderer.renderer.view.dispatchEvent(evt)
+    this.game.getScreenElement().dispatchEvent(evt)
 
 
   _createEvents: () ->
@@ -52,8 +54,6 @@ class GAME.HUDMenu
       this.hudElement.style.height = window.innerHeight+'px'
     )
 
-    # DOMAttrModified not working properly
-    # TODO: use MutationObserver instead
     this._observeAttributeChange()
 
 
@@ -97,5 +97,13 @@ class GAME.HUDMenu
     this._createEvents()
 
 
-  _run: () ->
+  addComponent: (component) ->
+    this.components.push(component)
+
+
+  run: () ->
+    # instantiate component classes
+    for component in this.components
+      new component(this.app())
+
     this.hud.run()

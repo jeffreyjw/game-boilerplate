@@ -1,7 +1,7 @@
 "use strict"
 
 
-class GAME.StopEventPropagation
+class GAME.StopEventPropagation extends GAME.HUDComponent
 
   constructor: (app) ->
     app.directive('stopEventPropagation', () ->

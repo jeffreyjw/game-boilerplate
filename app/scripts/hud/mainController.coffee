@@ -1,6 +1,6 @@
 "use strict"
 
-class GAME.HUDMainCtrl
+class GAME.HUDMainCtrl extends GAME.HUDComponent
 
   constructor: (app) ->
     app.controller("MainCtrl", [ "$scope", "HUDService", ($scope, HUDService) ->

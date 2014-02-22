@@ -34,21 +34,22 @@ class GAME.Loader extends GAME.Scene
       ]
     }
     preloader = new GAME.AssetManager(config)
-    preloader.onload = (loaded, all) =>
-      if loaded == all
-        tex = preloader.get(config.texture[0])
-        sprite = new PIXI.Sprite(tex)
-        sprite.position.x = 400
-        sprite.position.y = 200
-        sprite.anchor.x = 0.5
-        sprite.anchor.y = 0.5
-        this.stage.addChild(sprite)
+    preloader.addEventListener("loaded", () =>
+      tex = preloader.get(config.texture[0])
+      sprite = new PIXI.Sprite(tex)
+      sprite.position.x = 400
+      sprite.position.y = 200
+      sprite.anchor.x = 0.5
+      sprite.anchor.y = 0.5
+      this.stage.addChild(sprite)
 
-        setTimeout(
-          () =>
-            this._startLoading()
-          , 1000
-        )
+      # without this, the loading is not working
+      setTimeout(
+        () =>
+          this._startLoading()
+        , 1000
+      )
+    )
 
 
     preloader.load()
@@ -56,13 +57,17 @@ class GAME.Loader extends GAME.Scene
 
   _startLoading: () ->
     loader = new GAME.AssetManager(GAME.Assets)
-    loader.onload = (loaded, all) =>
-      this.text.setText(loaded + "/" + all)
 
-      if loaded == all
-        hud = new GAME.HUDMenu(this.game, document.getElementsByClassName('hud')[0])
-        this.game.setScene(new EXAMPLE.ExampleScene())
-        this.game.input.addHandler(new EXAMPLE.ExampleInputHandler())
+    loader.addEventListener("progress", (loaded, all) =>
+      this.text.setText(loaded + "/" + all)
+    )
+
+    loader.addEventListener("loaded", () =>
+      hud = new GAME.HUDMenu(this.game, document.getElementsByClassName('hud')[0])
+      this.game.setScene(new EXAMPLE.ExampleScene())
+      this.game.input.addHandler(new EXAMPLE.ExampleInputHandler())
+      hud.run()
+    )
 
 
     loader.load()

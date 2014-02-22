@@ -10,15 +10,14 @@ class EXAMPLE.ExampleScene extends GAME.Scene
   _fillScene: () ->
     this.stage.interactive = true
 
-    texture = PIXI.Texture.fromImage('images/gb.png')
-    sprite = new PIXI.Sprite(texture)
+    sprite = new GAME.Object3("images/gb.png")
 
-    sprite.position.x = 100
-    sprite.position.y = 100
+    sprite.sprite.position.x = 100
+    sprite.sprite.position.y = 100
 
-    sprite.interactive = true
-    sprite.buttonMode = true
-    sprite.mousedown = () ->
+    sprite.sprite.interactive = true
+    sprite.sprite.buttonMode = true
+    sprite.sprite.mousedown = () ->
       alert "example scene"
 
-    this.stage.addChild(sprite)
+    this.stage.addChild(sprite.sprite)

@@ -4,15 +4,24 @@
 class GAME.Object3
 
   sprite: null
+  node: null
 
   constructor: (obj) ->
+    this.sprite = this._createSprite(obj)
+    this.node = this._createNode()
+
+
+  _createSprite: (obj) ->
+    sprite = null
     if toString.call(obj) == '[object String]'
       texture = this._createTextureFromURL(obj)
-      this.sprite = this._createSpriteFromTexture(texture)
+      sprite = this._createSpriteFromTexture(texture)
     else if obj instanceof PIXI.Texture
-      this.sprite = this._createSpriteFromTexture(obj)
+      sprite = this._createSpriteFromTexture(obj)
     else
-      this.sprite = obj
+      sprite = obj
+
+    return sprite
 
 
   _createTextureFromURL: (url) ->
@@ -23,4 +32,9 @@ class GAME.Object3
   _createSpriteFromTexture: (texture) ->
     sprite = new PIXI.Sprite(texture)
     return sprite
+
+
+  _createNode: () ->
+    node = new PROJECTION.Node()
+    return node
 

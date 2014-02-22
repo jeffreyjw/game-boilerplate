@@ -18,7 +18,7 @@ class GAME.Game
 
 
   getScene: () ->
-    return this.scene.stage
+    return this.scene
 
 
   _prepare: () ->

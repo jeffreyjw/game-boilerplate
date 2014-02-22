@@ -38,3 +38,14 @@ class GAME.Object3
     node = new PROJECTION.Node()
     return node
 
+
+  setPosition: (position) ->
+    this.node.position = position
+
+
+  update: (camera) ->
+    data = this.node.getData2d(camera)
+    this.sprite.scale.x = data.scale
+    this.sprite.scale.y = data.scale
+    this.sprite.position.x = data.position[0]
+    this.sprite.position.y = data.position[1]

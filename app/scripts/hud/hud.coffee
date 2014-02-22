@@ -35,7 +35,7 @@ class GAME.HUDMenu
     return this.hud.app
 
 
-  _routeHandler: (e) ->
+  _routeHandlerIE: (e) ->
     evt = document.createEvent('MouseEvents')
     evt.initMouseEvent(e.type, e.bubbles, e.cancelable, window, e.detail,
       e.screenX, e.screenY, e.clientX, e.clientY, e.ctrlKey, e.altKey, e.shiftKey,
@@ -44,10 +44,28 @@ class GAME.HUDMenu
     this.game.getScreenElement().dispatchEvent(evt)
 
 
+  _routeHandler: (e) ->
+    evt = new MouseEvent(e.type, {
+      view: window, bubbles: e.bubbles, cancelable: e.cancelable, detail: e.detail,
+      screenX: e.screenX, screenY: e.screenY, clientX: e.clientX, clientY: e.clientY,
+      ctrlKey: e.ctrlKey, altKey: e.altKey, shiftKey: e.shiftKey, metaKey: e.metaKey,
+      button: e.button, relatedTarget: e.relatedTarget
+    })
+
+    this.game.getScreenElement().dispatchEvent(evt)
+
+  _getRouteHandler: () ->
+    if MouseEvent != undefined && !bowser.msie
+      return this._routeHandler
+    else
+      return this._routeHandlerIE
+
+
   _createEvents: () ->
-    this.hudElement.addEventListener("mousedown", (e) => this._routeHandler(e) )
-    this.hudElement.addEventListener("mousemove", (e) => this._routeHandler(e) )
-    this.hudElement.addEventListener("mouseout", (e) => this._routeHandler(e) )
+    routeHandler = this._getRouteHandler()
+    this.hudElement.addEventListener("mousedown", (e) => routeHandler.call(this, e) )
+    this.hudElement.addEventListener("mousemove", (e) => routeHandler.call(this, e) )
+    this.hudElement.addEventListener("mouseout", (e) => routeHandler.call(this, e) )
 
     window.addEventListener("resize", () =>
       this.hudElement.style.width = window.innerWidth+'px'

@@ -7,9 +7,9 @@ class GAME.Object3
   node: null
   _scale: null
 
-  constructor: (obj) ->
+  constructor: (obj, parent=null) ->
     this.sprite = this._createSprite(obj)
-    this.node = this._createNode()
+    this.node = this._createNode(parent)
     this._scale = 1
 
 
@@ -36,8 +36,8 @@ class GAME.Object3
     return sprite
 
 
-  _createNode: () ->
-    node = new PROJECTION.Node()
+  _createNode: (parent) ->
+    node = new PROJECTION.Node(parent)
     return node
 
 
@@ -50,6 +50,7 @@ class GAME.Object3
 
 
   update: (camera) ->
+    this.node.update()
     data = this.node.getData2d(camera)
     this.sprite.scale.x = this._scale*data.scale
     this.sprite.scale.y = this._scale*data.scale

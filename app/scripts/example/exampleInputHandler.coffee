@@ -3,8 +3,6 @@
 class EXAMPLE.ExampleInputHandler extends GAME.InputHandler
 
   run: (game, keyboard) ->
-    if (keyboard.isKeyPressed(GAMEKBD.Keys.ARROW_UP))
-      console.log("arrow up is pressed")
 
     scene = game.getScene()
     service = game.hud.service()
@@ -14,6 +12,14 @@ class EXAMPLE.ExampleInputHandler extends GAME.InputHandler
     moon = scene.objects[2]
     sun.node.rotation[2] += 0.01
     earth.node.rotation[2] += 0.01
+
+    if (keyboard.isKeyPressed(GAMEKBD.Keys.ARROW_UP))
+      scene.camera.position = [0, 161, 0]
+      scene.camera.up = [0, 0, 1]
+    if (keyboard.isKeyPressed(GAMEKBD.Keys.ARROW_DOWN))
+      scene.camera.position = [0, 0, 1]
+      scene.camera.up = [0, 1, 0]
+
     scene.update(game)
 
     service.set("sun_x", sun.sprite.position.x)

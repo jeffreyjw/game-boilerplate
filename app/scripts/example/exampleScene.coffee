@@ -14,6 +14,7 @@ class EXAMPLE.ExampleScene extends GAME.Scene
 
   _createCamera: () ->
     camera = new PROJECTION.Camera()
+    camera.aspectRatio = window.innerWidth / window.innerHeight
     return camera
 
   _fillScene: () ->
@@ -47,19 +48,22 @@ class EXAMPLE.ExampleScene extends GAME.Scene
 
 
   _createSun: () ->
-    return this._createStellarBody("images/sun.png", [400, 100, -2], 1)
+    return this._createStellarBody("images/sun.png", [0, 0, -2], 1)
 
 
   _createEarth: (parent) ->
-    return this._createStellarBody("images/earth.png", [200, 0, 0], 0.5, parent)
+    return this._createStellarBody("images/earth.png", [0, -100, 0], 0.5, parent)
 
 
   _createMoon: (parent) ->
     return this._createStellarBody("images/moon.png", [100, 0, 0], 0.2, parent)
 
 
-  update: () ->
+  update: (game) ->
+    screen = game.renderer.renderer
+    this.objects[0].node.update()
+
     for o in this.objects
-      o.update(this.camera)
+      o.update(screen, this.camera)
 
 

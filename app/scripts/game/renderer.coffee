@@ -28,5 +28,6 @@ class GAME.Renderer
       this.renderer.resize(window.innerWidth, window.innerHeight)
     )
 
+
   render: () ->
     this.renderer.render(this.stage)

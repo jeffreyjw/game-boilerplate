@@ -35,6 +35,10 @@ class GAME.HUDMenu
     return this.hud.app
 
 
+  service: () ->
+    return this.hud.service
+
+
   _routeHandlerIE: (e) ->
     evt = document.createEvent('MouseEvents')
     evt.initMouseEvent(e.type, e.bubbles, e.cancelable, window, e.detail,

@@ -49,10 +49,11 @@ class GAME.Object3
     this._scale = scale
 
 
-  update: (camera) ->
-    this.node.update()
+  update: (screen, camera) ->
+    #this.node.update()
     data = this.node.getData2d(camera)
     this.sprite.scale.x = this._scale*data.scale
     this.sprite.scale.y = this._scale*data.scale
-    this.sprite.position.x = data.position[0]
-    this.sprite.position.y = data.position[1]
+    this.sprite.position.x = (0.5*screen.width) + data.position[0]
+    this.sprite.position.y = (0.5*screen.height) + data.position[1]
+    #console.log this.sprite.position.x, this.sprite.position.y

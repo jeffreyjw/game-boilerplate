@@ -66,6 +66,7 @@ class GAME.Loader extends GAME.Scene
       hud = new GAME.HUDMenu(this.game, document.getElementsByClassName('hud')[0])
       this.game.setScene(new EXAMPLE.ExampleScene())
       this.game.input.addHandler(new EXAMPLE.ExampleInputHandler())
+      this.game.hud = hud
       hud.run()
     )
 

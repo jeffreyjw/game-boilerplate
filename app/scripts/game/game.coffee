@@ -6,6 +6,7 @@ class GAME.Game
   screen: null
   input: null
   scene: null
+  hud: null
 
   constructor: (screen) ->
     this.screen = screen

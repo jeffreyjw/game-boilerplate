@@ -1,5 +1,14 @@
-<div>
+<div style="color: #AAAAAA;">
     <stop-event-propagation>
         <button class="btn btn-default" ng-click="click()">button</button>
     </stop-event-propagation>
+    <div>
+        Sun: {{service.get("sun_x")}}, {{service.get("sun_y")}}
+    </div>
+    <div>
+        Earth: {{service.get("earth_x")}}, {{service.get("earth_y")}}
+    </div>
+    <div>
+        Moon: {{service.get("moon_x")}}, {{service.get("moon_y")}}
+    </div>
 </div>

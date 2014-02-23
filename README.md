@@ -44,3 +44,27 @@ Another important thing is an asset loader. In `scripts/game/loader.coffee` you 
 which extends `GAME.Scene`. This class uses `GAME.AssetManager` as a loader and also preloader (a loader which
 loads only the files needed to be shown when the game is loading). You can extend the `GAME.AssetManager` class,
 by adding new asset types. This class uses `UAM.js` library for this.
+
+HUD class is intended to be used in some manner like flash in AAA games - you can create HUD and Menu views using
+HTML5, and react on the data flow between the HUD and game with angular code. You can create additional controllers
+by extending the `GAME.HUDComponent` class and adding it to the HUD like this:
+
+```javascript
+class ExampleComponent extends GAME.HUDComponent
+    // app is an angular module, you can use it
+    // to create controllers, services, directives etc.
+    // For more details, please look at the angular docs
+    constructor: (app) ->
+        app.controller('example', () ->
+            $scope.init = () ->
+                ... some code ...
+
+             $scope.init()
+        )
+
+hud = new GAME.HUDMenu(game, document.getElementById("hud"))
+hud.addComponent(ExampleComponent)
+hud.run()
+```
+
+You can add the needed dependencies in the class `GAME.HUDMenu` (`scripts/hud/hud.coffee`), in `_createConfig()` method.

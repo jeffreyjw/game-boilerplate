@@ -39,3 +39,8 @@ You can see an example in `scripts/example/exampleScene.coffee` and `scripts/exa
 
 One note: there can be set only one scene at a time, but many input handlers can coexist. So for example, you can
 have a separate input handler for movement, a separate for shooting a gun and a separate for punching.
+
+Another important thing is an asset loader. In `scripts/game/loader.coffee` you can look at `GAME.Loader` class,
+which extends `GAME.Scene`. This class uses `GAME.AssetManager` as a loader and also preloader (a loader which
+loads only the files needed to be shown when the game is loading). You can extend the `GAME.AssetManager` class,
+by adding new asset types. This class uses `UAM.js` library for this.

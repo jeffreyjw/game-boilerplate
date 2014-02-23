@@ -14,7 +14,7 @@ class EXAMPLE.ExampleScene extends GAME.Scene
 
   _createCamera: () ->
     camera = new PROJECTION.Camera()
-    camera.aspectRatio = window.innerWidth / window.innerHeight
+    camera.aspectRatio = 1
     return camera
 
   _fillScene: () ->
@@ -52,11 +52,11 @@ class EXAMPLE.ExampleScene extends GAME.Scene
 
 
   _createEarth: (parent) ->
-    return this._createStellarBody("images/earth.png", [0, -100, 0], 0.5, parent)
+    return this._createStellarBody("images/earth.png", [0, -160, 0], 0.5, parent)
 
 
   _createMoon: (parent) ->
-    return this._createStellarBody("images/moon.png", [100, 0, 0], 0.2, parent)
+    return this._createStellarBody("images/moon.png", [50, 0, 0], 0.2, parent)
 
 
   update: (game) ->

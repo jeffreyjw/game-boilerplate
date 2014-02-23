@@ -12,7 +12,8 @@ class EXAMPLE.ExampleInputHandler extends GAME.InputHandler
     sun = scene.objects[0]
     earth = scene.objects[1]
     moon = scene.objects[2]
-    sun.node.rotation[2] += 0.1
+    sun.node.rotation[2] += 0.01
+    earth.node.rotation[2] += 0.01
     scene.update(game)
 
     service.set("sun_x", sun.sprite.position.x)
